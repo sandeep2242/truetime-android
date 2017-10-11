@@ -13,6 +13,8 @@ import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collections;
@@ -171,7 +173,13 @@ public class TrueTimeRx
                                   return Flowable.error(e);
                               }
                           }
-                      });
+                      })
+                    .filter(new Predicate<InetAddress>() {
+                        @Override
+                        public boolean test(InetAddress inetAddress) throws Exception {
+                            return isReachable(inetAddress);
+                        }
+                    });
             }
         };
     }
@@ -258,5 +266,15 @@ public class TrueTimeRx
                 return bestResponses.get(bestResponses.size() / 2);
             }
         };
+    }
+
+    private boolean isReachable(InetAddress addr) {
+        try {
+            Socket soc = new Socket();
+            soc.connect(new InetSocketAddress(addr, 80), 5_000);
+            return true;
+        } catch (IOException ex) {
+            return false;
+        }
     }
 }
