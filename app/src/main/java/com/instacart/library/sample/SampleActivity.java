@@ -6,9 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.instacart.library.truetime.TrueTime;
-
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,18 +17,14 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class SampleActivity
       extends AppCompatActivity {
 
     private static final String TAG = SampleActivity.class.getSimpleName();
 
-    @Bind(R.id.tt_time_gmt) TextView timeGMT;
-    @Bind(R.id.tt_time_pst) TextView timePST;
-    @Bind(R.id.tt_time_device) TextView timeDeviceTime;
+    @BindView(R.id.tt_time_gmt) TextView timeGMT;
+    @BindView(R.id.tt_time_pst) TextView timePST;
+    @BindView(R.id.tt_time_device) TextView timeDeviceTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
