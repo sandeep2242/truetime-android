@@ -184,6 +184,7 @@ public class SntpClient {
 //                     "server_response_delay",
 //                     (float) delay,
 //                     serverResponseDelayMax);
+                // removed logs
             }
 
             long timeElapsedSinceRequest = Math.abs(originateTime - System.currentTimeMillis());
