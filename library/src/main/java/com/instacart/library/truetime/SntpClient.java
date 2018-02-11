@@ -179,11 +179,11 @@ public class SntpClient {
 
             double delay = Math.abs((responseTime - originateTime) - (transmitTime - receiveTime));
             if (delay >= serverResponseDelayMax) {
-                throw new InvalidNtpServerResponseException(
-                    "%s too large for comfort %f [actual] >= %f [expected]",
-                    "server_response_delay",
-                    (float) delay,
-                    serverResponseDelayMax);
+//                 throw new InvalidNtpServerResponseException(
+//                     "%s too large for comfort %f [actual] >= %f [expected]",
+//                     "server_response_delay",
+//                     (float) delay,
+//                     serverResponseDelayMax);
             }
 
             long timeElapsedSinceRequest = Math.abs(originateTime - System.currentTimeMillis());
